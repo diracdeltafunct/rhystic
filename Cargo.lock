@@ -426,12 +426,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "rhystic"
-version = "0.1.0"
+name = "rhystic-core"
+version = "0.0.0"
 dependencies = [
  "axum",
  "tokio",
 ]
+
+[[package]]
+name = "rhystic-server"
+version = "0.0.0"
+dependencies = [
+ "axum",
+ "tokio",
+]
+
+[[package]]
+name = "rhystic-types"
+version = "0.0.0"
 
 [[package]]
 name = "rustc-demangle"
@@ -535,13 +547,6 @@ name = "sync_wrapper"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2047c6ded9c721764247e62cd3b03c09ffc529b2ba5b10ec482ae507a4a70160"
-
-[[package]]
-name = "tests"
-version = "0.1.0"
-dependencies = [
- "xaction",
-]
 
 [[package]]
 name = "tokio"
@@ -732,27 +737,3 @@ name = "windows_x86_64_msvc"
 version = "0.48.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
-
-[[package]]
-name = "xaction"
-version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5655cc22964d2ea3fe69a6e40e81ec1a979a7dd0d0d9c126eb211b2f59f9ab6a"
-dependencies = [
- "xshell",
-]
-
-[[package]]
-name = "xshell"
-version = "0.1.17"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eaad2035244c56da05573d4d7fda5f903c60a5f35b9110e157a14a1df45a9f14"
-dependencies = [
- "xshell-macros",
-]
-
-[[package]]
-name = "xshell-macros"
-version = "0.1.17"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4916a4a3cad759e499a3620523bf9545cc162d7a06163727dde97ce9aaa4cf39"
