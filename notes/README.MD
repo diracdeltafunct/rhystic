@@ -1,0 +1,1 @@
+## Contains note files for mental keeping of design
