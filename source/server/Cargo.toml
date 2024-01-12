@@ -7,3 +7,7 @@ edition = "2021"
 axum = "0.5"
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
+
+# local dependencies
+rhystic-core = { path = "../core" }
+rhystic-types = { path = "../types" }

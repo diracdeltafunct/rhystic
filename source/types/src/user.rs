@@ -1,13 +1,15 @@
+use chrono::{DateTime, Utc};
+
 #[allow(dead_code)]
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct User {
     id: i32,
     name: String,
     email: String,
     password: String, // TODO: will make this secure later
-    created_at: String,
-    updated_at: String,
-    deleted_at: String,
+    created_at: DateTime<Utc>,
+    updated_at: DateTime<Utc>,
+    deleted_at: Option<DateTime<Utc>>,
 }
 
 impl User {
@@ -16,9 +18,9 @@ impl User {
         name: String,
         email: String,
         password: String,
-        created_at: String,
-        updated_at: String,
-        deleted_at: String,
+        created_at: DateTime<Utc>,
+        updated_at: DateTime<Utc>,
+        deleted_at: Option<DateTime<Utc>>,
     ) -> User {
         User {
             id,

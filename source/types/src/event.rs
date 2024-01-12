@@ -1,5 +1,25 @@
+use crate::roles::{Judge, Organizer, Player, ScoreKeeper};
+use chrono::{DateTime, Utc};
+
 #[allow(dead_code)]
 use super::user::User;
+
+pub enum RulesEnforcement {
+    Comp,
+    Regular,
+    Pro,
+}
+pub enum Permissions {
+    AddDropPlayers,
+    DropPlayers,
+    DropSelf,
+    EndEvent,
+    StartRound,
+    SubmitResultsAny,
+    SubmitResultsUser,
+    All,
+    // ...
+}
 
 enum EventType {
     Constructed(ConstructedEvent),
@@ -31,74 +51,58 @@ enum LimitedEvent {
     Draft,
     Sealed,
 }
-#[derive(Debug)]
-struct Player {
-    player: User,
-}
-struct Judge {
-    judge: User,
-}
-struct Organizer {
-    organizer: User,
-}
-struct ScoreKeeper {
-    sk: User,
-}
 
 struct Event {
     type_: EventType,
+    name: String,
     players: Vec<Player>,
     organizer: Organizer,
     score_keepers: Vec<ScoreKeeper>,
     judges: Vec<Judge>,
-    start_time: String,
+    start_time: DateTime<Utc>,
     rounds: i8,
     round_length: i8,
     current_round: i8,
-    cut_to_top: i8, // 0 means no cut
+    cut_to_top: Option<i8>,
+    rules_enforcement: RulesEnforcement,
 }
 
 impl Event {
     pub fn new(
         type_: EventType,
-        players: Vec<Player>,
+        name: String,
         organizer: Organizer,
-        score_keepers: Vec<ScoreKeeper>,
-        judges: Vec<Judge>,
-        start_time: String,
-        rounds: i8,
+        start_time: DateTime<Utc>,
         round_length: i8,
-        current_round: i8,
-        cut_to_top: i8,
+        rules_enforcement: RulesEnforcement,
     ) -> Event {
         Event {
             type_,
-            players,
+            name,
             organizer,
-            score_keepers,
-            judges,
             start_time,
-            rounds,
             round_length,
-            current_round,
-            cut_to_top,
+            rules_enforcement,
+            ..Event::default()
         }
     }
 }
 
 impl Default for Event {
     fn default() -> Self {
-        Event {
+        Self {
             type_: EventType::Constructed(ConstructedEvent::Standard),
+            name: String::from(""),
             players: vec![],
-            organizer: todo!(),
-            score_keepers: todo!(),
-            judges: todo!(),
-            start_time: todo!(),
-            rounds: todo!(),
-            round_length: todo!(),
-            current_round: todo!(),
-            cut_to_top: todo!(),
+            organizer: Organizer::default(),
+            score_keepers: vec![],
+            judges: vec![],
+            start_time: DateTime::<Utc>::from_utc(chrono::NaiveDateTime::from_timestamp(0, 0), Utc),
+            rounds: 3,
+            round_length: 50,
+            current_round: 0,
+            cut_to_top: None,
+            rules_enforcement: RulesEnforcement::Regular,
         }
     }
 }
