@@ -3,28 +3,23 @@ use std::net::SocketAddr;
 use axum::{routing::get, Router};
 
 pub async fn start_dev_server() {
-        // Route all requests on "/" endpoint to anonymous handler.
+    // Route all requests on "/" endpoint to anonymous handler.
     //
     // A handler is an async function which returns something that implements
     // `axum::response::IntoResponse`.
 
     // A closure or a function can be used as handler.
 
-    let app = Router::new().route("/", get(handler));
-    //        Router::new().route("/", get(|| async { "Hello, world!" }));
+    let app = Router::new().route("/", get(root_handler));
 
-    // Address that server will bind to.
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-
-    // Use `hyper::server::Server` which is re-exported through `axum::Server` to serve the app.
+    println!("listening on {}", addr);
     axum::Server::bind(&addr)
-        // Hyper server takes a make service.
         .serve(app.into_make_service())
         .await
         .unwrap();
 }
 
-
-async fn handler() -> &'static str {
+async fn root_handler() -> &'static str {
     "Hello, world!"
 }
