@@ -1,19 +1,2 @@
 [workspace]
-resolver = "2"
-
-members = ["source", "tests"]
-
-[profile.dev]
-debug = 1  # line numbers only
-
-[profile.dev.package."*"]
-debug = 0  # no debug info in dependencies
-
-[profile.release]
-debug = 1  # line numbers only
-
-[profile.release.package."*"]
-debug = 0  # no debug info in dependencies
-
-[profile.test]
-opt-level = 1
+members = ["source/*"]
