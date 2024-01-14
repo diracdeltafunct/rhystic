@@ -66,7 +66,6 @@ struct Event {
     cut_to_top: Option<i8>,
     rules_enforcement: RulesEnforcement,
 }
-
 impl Event {
     pub fn new(
         type_: EventType,
