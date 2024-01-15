@@ -1,14 +1,17 @@
 use crate::roles::{Judge, Organizer, Player, ScoreKeeper};
 use chrono::{DateTime, Utc};
+use serde::{Serialize, Deserialize};
 
 #[allow(dead_code)]
 use super::user::User;
 
+#[derive(Serialize, Deserialize)]
 pub enum RulesEnforcement {
     Comp,
     Regular,
     Pro,
 }
+#[derive(Serialize, Deserialize)]
 pub enum Permissions {
     AddDropPlayers,
     DropPlayers,
@@ -21,11 +24,12 @@ pub enum Permissions {
     // ...
 }
 
+#[derive(Serialize, Deserialize)]
 enum EventType {
     Constructed(ConstructedEvent),
     Limited(LimitedEvent),
 }
-
+#[derive(Serialize, Deserialize)]
 enum ConstructedEvent {
     Standard,
     Modern,
@@ -46,12 +50,12 @@ enum ConstructedEvent {
     Frontier,
     TinyLeaders,
 }
-
+#[derive(Serialize, Deserialize)]
 enum LimitedEvent {
     Draft,
     Sealed,
 }
-
+#[derive(Serialize, Deserialize)]
 struct Event {
     type_: EventType,
     name: String,

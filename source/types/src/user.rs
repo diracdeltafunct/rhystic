@@ -1,7 +1,8 @@
 use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 
 #[allow(dead_code)]
-#[derive(Debug, Default)]
+#[derive(Debug, Deserialize, Serialize, Default)]
 pub struct User {
     id: i32,
     name: String,

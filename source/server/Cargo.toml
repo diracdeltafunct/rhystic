@@ -1,13 +1,15 @@
 [package]
-name = "rhystic-server"
-version = "0.0.0"
+name = "rhystic"
+version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = "0.5"
-tokio = { version = "1", features = ["full"] }
-serde = { version = "1", features = ["derive"] }
+axum = "0.7.3"
+shuttle-axum = "0.36.0"
+shuttle-runtime = "0.36.0"
+shuttle-shared-db = "0.36.0"
+shuttle-secrets = "0.36.0"
+tokio = "1.28.2"
+tracing = "0.1.40"
 
-# local dependencies
-rhystic-core = { path = "../core" }
-rhystic-types = { path = "../types" }
+anyhow = "1.0.66"

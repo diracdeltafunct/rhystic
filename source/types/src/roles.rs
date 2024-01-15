@@ -1,6 +1,8 @@
+use serde::{Serialize, Deserialize};
+
 use crate::{event::Permissions, user::User};
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct Player {
     player: User,
 }
@@ -10,7 +12,7 @@ impl Player {
         vec![Permissions::SubmitResultsUser, Permissions::DropSelf]
     }
 }
-#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct Judge {
     judge: User,
 }
@@ -25,7 +27,7 @@ impl Judge {
         ]
     }
 }
-#[derive(Debug, Default)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Organizer {
     organizer: User,
 }
@@ -36,7 +38,7 @@ impl Organizer {
     }
 }
 
-#[derive(Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct ScoreKeeper {
     sk: User,
 }

@@ -1,6 +1,13 @@
 
 ### requirements
 [Rust](https://www.rust-lang.org/tools/install)
+cargo install cargo-shuttle
 
 ### start dev server
-cargo run
+cargo shuttle run
+
+### deploy
+cargo shuttle deploy
+
+### Dev address
+https://rhystic.shuttleapp.rs
